@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function validateName() {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
-    name.addEventListener('input', function () {
+    name.addEventListener('input', function() {
         try {
             let personData = new AddressBookApp();
             personData.name = name.value;
@@ -23,7 +23,7 @@ function validateName() {
 function validatePhone() {
     const phone = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
-    phone.addEventListener('input', function () {
+    phone.addEventListener('input', function() {
         try {
             let personData = new AddressBookApp();
             personData.phone = phone.value;
@@ -37,7 +37,7 @@ function validatePhone() {
 function validateAddress() {
     const address = document.querySelector('#address');
     const addressError = document.querySelector('.address-error');
-    address.addEventListener('input', function () {
+    address.addEventListener('input', function() {
         try {
             let personData = new AddressBookApp();
             personData.address = address.value;
@@ -94,9 +94,7 @@ const createAndUpdateStorage = (personData) => {
 }
 
 const getInputValueId = (id) => {
-    console.log(id);
     let value = document.querySelector(id).value;
-    //console.log(value)
     return value;
 }
 
@@ -118,10 +116,13 @@ const createNewBookId = () => {
     return bookId;
 }
 
+// UC => 9
+//On cancel redirect to home page
 const cancel = () => {
     window.location.replace(Site_Properties.home);
 }
 
+//Reset the values
 function resetTheForm() {
     const resetForm = () => {
         setTextValue('#name', '');
@@ -138,9 +139,9 @@ function resetTheForm() {
     }
 
     const setValue = (id, value) => {
-        let element = document.querySelector(id);
-        element.value = value;
-    }
-    console.log(resetForm);
+            let element = document.querySelector(id);
+            element.value = value;
+        }
+        //console.log(resetForm);
     alert("Data has been reset now")
 }
