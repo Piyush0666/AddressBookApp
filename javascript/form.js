@@ -4,12 +4,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     validateName();
     validatePhone();
     validateAddress();
+    checkForUpdate();
 })
 
 function validateName() {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
-    name.addEventListener('input', function() {
+    name.addEventListener('input', function () {
         try {
             let personData = new AddressBookApp();
             personData.name = name.value;
@@ -23,7 +24,7 @@ function validateName() {
 function validatePhone() {
     const phone = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
-    phone.addEventListener('input', function() {
+    phone.addEventListener('input', function () {
         try {
             let personData = new AddressBookApp();
             personData.phone = phone.value;
@@ -37,7 +38,7 @@ function validatePhone() {
 function validateAddress() {
     const address = document.querySelector('#address');
     const addressError = document.querySelector('.address-error');
-    address.addEventListener('input', function() {
+    address.addEventListener('input', function () {
         try {
             let personData = new AddressBookApp();
             personData.address = address.value;
@@ -139,9 +140,33 @@ function resetTheForm() {
     }
 
     const setValue = (id, value) => {
-            let element = document.querySelector(id);
-            element.value = value;
-        }
-        //console.log(resetForm);
+        let element = document.querySelector(id);
+        element.value = value;
+    }
+    //console.log(resetForm);
     alert("Data has been reset now")
+}
+
+//Section: 2 UC => 6 Ability to update address book contact details.
+const checkForUpdate = () => {
+    let jsonData = localStorage.getItem('edit-person');
+    isUpdate = jsonData ? true : false;
+    if (!isUpdate)
+        return;
+    addressBookObject = JSON.parse(jsonData);
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#name', addressBookObject._name);
+    setValue('#phone', addressBookObject._phone);
+    setValue('#address', addressBookObject._address);
+    setValue('#city', addressBookObject._city);
+    setValue('#state', addressBookObject._state);
+    setValue('#zipcode', addressBookObject._zipcode);
+}
+
+const setValue = (id, value) => {
+    let element = document.querySelector(id);
+    element.value = value;
 }
